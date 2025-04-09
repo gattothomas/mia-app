@@ -1,0 +1,92 @@
+<<!DOCTYPE html>
+<html lang="it">
+<head>
+    <link rel="manifest" href="manifest.json"> <!-- Collegamento al manifesto -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benvenuto nella mia app fantastica</title>
+    <style>
+        /* Impostazioni generali della pagina */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* sfondo colorato con gradiente */
+            color: white; /* testo bianco */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* altezza della finestra */
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animazione del titolo */
+        h1 {
+            font-size: 3rem;
+            animation: fadeIn 2s ease-in-out; /* animazione per il titolo */
+        }
+
+        /* Definizione dell'animazione */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Immagine che si muove da sinistra a destra */
+        .moving-image {
+            position: absolute;
+            bottom: 20px;
+            left: -200px;
+            animation: moveRight 5s infinite linear;
+        }
+
+        /* Definisce l'animazione della posizione dell'immagine */
+        @keyframes moveRight {
+            0% {
+                left: -200px;
+            }
+            50% {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Benvenuto nella mia app fantastica!</h1>
+
+        <button onclick="alert('Ciao! Benvenuto nella nostra app!')">Premi qui</button>
+    </div>
+
+    <!-- Immagine che si muove -->
+    <img src="https://via.placeholder.com/150" alt="Immagine in movimento" class="moving-image">
+
+    <script>
+        // Registrazione del Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker registrato con successo:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('Errore nel registrare il Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
+
